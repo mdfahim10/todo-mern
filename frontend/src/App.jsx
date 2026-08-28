@@ -1,17 +1,25 @@
-import NavBar from "./components/Navbar"
-import {Routes,Route} from "react-router-dom"
+import { Routes, Route } from "react-router-dom";
+import NavBar from "./components/Navbar";
+import AddTask from "./components/AddTask";
 
 function App() {
     return (
         <>
             <NavBar />
+
             <Routes>
-                <Route path="/" element={<h1> Hi this is the home page</h1>} />
-                <Route path="/add" element={<h1> Hi this is the adding page</h1>} />
+                <Route
+                    path="/"
+                    element={<h1>Hi this is the home page</h1>}
+                />
+
+                <Route
+                    path="/add"
+                    element={<AddTask />}
+                />
             </Routes>
         </>
-    )
+    );
 }
-import { Form } from "react-router-dom"
 
-export default App
+export default App;

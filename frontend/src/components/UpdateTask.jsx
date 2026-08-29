@@ -1,21 +1,29 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "../styles/UpdateTask.css"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function UpdateTask() {
 
     const [taskData, setTaskData] = useState();
 
-    const navigate=useNavigate();
+    const {id} = useParams()
+    useEffect(()=>{getTask(id)},[])
 
-
-
+    const getTask = async (id) => {
+        let task=await fetch("http://localhost:3200/task/"+id);
+        task = await task.json()
+        if(task.result){
+            setTaskData(task.result)
+        }
+    }
+    
     return (
         <div className="container">
             <h1>Update Task</h1>
 
             <label htmlFor="">Title</label>
             <input
+                value={taskData?.title}
                 onChange={(event) => setTaskData({ ...taskData, title: event.target.value })}
                 type="text"
                 name="title"
@@ -24,6 +32,7 @@ export default function UpdateTask() {
 
             <label htmlFor="">Description</label>
             <textarea
+                value={taskData?.description}
                 onChange={(event) => setTaskData({ ...taskData, description: event.target.value })}
                 rows={4}
                 name="description"

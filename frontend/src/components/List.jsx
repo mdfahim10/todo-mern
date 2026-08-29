@@ -24,6 +24,7 @@ export default function List() {
                 <li className="list-header">S.No</li>
                 <li className="list-header">Title</li>
                 <li className="list-header">Description</li>
+                <li className="list-header">Action</li>
 
                 {
 
@@ -32,6 +33,7 @@ export default function List() {
                             <li className="list-item">{index+1}</li>
                             <li className="list-item">{item.title}</li>
                             <li className="list-item">{item.description}</li>
+                            <li className="list-item"> <button>Delete</button></li>
                         </>
                     ))
 

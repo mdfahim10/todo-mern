@@ -33,7 +33,7 @@ input,textarea{
     font-size: 18px;
     box-sizing: border-box;
 }
-.button{
+.submit{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     width: 100%;
     height: 35%;
@@ -47,7 +47,7 @@ input,textarea{
     font-size: 20px;
     box-sizing: border-box;
 }
-.button:hover{
+.submit:hover{
     color: white;
     font-size: 20px;
 }

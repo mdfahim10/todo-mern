@@ -1,13 +1,10 @@
 import e from "express";
+import cors from "cors"
 import { collectionName, connection } from "./dbconfig.js";
-import cors from 'cors';
+const app=e();
 
-
-const app = e();
-
-app.use(e.json());
 app.use(cors());
-
+app.use(e.json());
 app.post("/add-task", async (req,res) => {
     const db= await connection();
     const collection = await db.collection(collectionName);
@@ -21,10 +18,15 @@ app.post("/add-task", async (req,res) => {
     }else{
         res.send({
             message:"task not added",
-            success:false
+            success:false,
         })
     }
 })
 
-
-app.listen(3200)
+app.get("/",(req,res)=>{
+    res.send({
+        message:"Basic API working ... ",
+        success:true
+    })
+})
+app.listen(3200);

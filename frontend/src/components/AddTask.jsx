@@ -1,24 +1,28 @@
 import { useState } from "react"
 import "../styles/AddTask.css"
+import { useNavigate } from "react-router-dom";
 
 export default function AddTask() {
 
-    const[taskData,setTaskData]=useState();
+    const [taskData, setTaskData] = useState();
 
-    const handleAddTask=async ()=>{
+    const navigate=useNavigate();
+    const handleAddTask = async () => {
         console.log(taskData);
-        let result=await fetch("http://localhost:3200/add-task",
+        let result = await fetch("http://localhost:3200/add-task",
             {
-                method:"POST",
-                body:JSON.stringify(taskData),
-                headers:{
-                    "Content-Type":"Application/JSON"
+                method: "POST",
+                body: JSON.stringify(taskData),
+                headers: {
+                    "Content-Type": "Application/JSON"
                 }
             }
         )
-        result=await result.json()
-        if(result){
+        result = await result.json()
+        if (result) {
+            navigate("/")
             console.log("New Task Added")
+            setTaskData({});
         }
 
     }
@@ -29,7 +33,7 @@ export default function AddTask() {
 
             <label htmlFor="">Title</label>
             <input
-                onChange={(event)=>setTaskData({...taskData,title:event.target.value})}
+                onChange={(event) => setTaskData({ ...taskData, title: event.target.value })}
                 type="text"
                 name="title"
                 placeholder="enter task title"
@@ -37,7 +41,7 @@ export default function AddTask() {
 
             <label htmlFor="">Description</label>
             <textarea
-                onChange={(event)=>setTaskData({...taskData,description:event.target.value})}
+                onChange={(event) => setTaskData({ ...taskData, description: event.target.value })}
                 rows={4}
                 name="description"
                 placeholder="enter task description"

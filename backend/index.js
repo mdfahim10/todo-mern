@@ -64,10 +64,5 @@ app.delete("/delete/:id", async (req, res) => {
 
 
 
-app.get("/", (req, res) => {
-    res.send({
-        message: "Basic API working ... ",
-        success: true
-    })
-})
+
 app.listen(3200);

@@ -61,6 +61,31 @@ app.get("/task/:id", async (req, res) => {
     }
 })
 
+app.put("/update-task", async (req, res) => {
+    const db = await connection();
+    const collection = db.collection(collectionName);
+    const { _id, ...fields } = req.body;
+    const update = {
+        $set: fields
+    };
+    console.log(req.body);
+    const result = await collection.updateOne(
+        { _id: new ObjectId(_id) },
+        update
+    );
+    if (result) {
+        res.send({
+            message: "Task Data Updated",
+            success: true,
+            result
+        });
+    } else {
+        res.send({
+            message: "Error! try again later",
+            success: false
+        });
+    }
+});
 
 
 
